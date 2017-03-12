@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间: 对应接口的包名+接口名 -->
+<mapper namespace="com.luken.dao.UserDao">
+	<!-- 通过Id查找 -->
+	<select id="findUserById" resultType="com.luken.model.User">
+		select * from user_data u where id=#{id}
+	</select>
+	<!-- 查询所有的User -->
+	<select id="findUserList" resultType="com.luken.model.User">
+		SELECT u.id, u.name, u.password, u.age FROM user_data u;
+	</select>
+	<!-- 添加 -->
+	<insert id="addUser" parameterType="com.luken.model.User">
+		insert into user_data values(#{name},#{password},#{age})
+	</insert>
+	<!-- 删除 -->
+	<delete id="delUser" >
+		DELETE FROM user_data WHERE id=#{id}
+	</delete>
+	<!-- 更新 -->
+	<update id="updateUser">
+		UPDATE user_data SET name=#{name},password=#{password},age=#{age} WHERE id=#{id}
+	</update>
+</mapper>
